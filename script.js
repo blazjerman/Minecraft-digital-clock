@@ -23,8 +23,14 @@ const displayChars = {
 
 let playVideo = true
 
+let clockDisplayed
+
 
 function setupClock(clock) {
+
+    if (clockDisplayed == clock) return
+
+    console.log("Clock displayed: " + clock.name)
 
     function clipSeg(seg) {
         
@@ -71,6 +77,8 @@ function setupClock(clock) {
 
     }, 2000)
 
+    clockDisplayed = clock
+
 }
 
 
@@ -98,9 +106,21 @@ function updateClock(force) {
     const date = new Date()
     const minutes = date.getMinutes()
     const hours = date.getHours()
+
+    let closestHour = clocks[0].startingHour
+    let closestClock = clocks[0]
+
+    
+    for (const clock of clocks) {
+        if (clock.startingHour > hours) continue
+        if (clock.startingHour < closestHour) continue
+        closestClock = clock
+        closestHour = clock.startingHour
+    }
+    
+    setupClock(closestClock)
     
     if (lastMinutes != minutes || force) {
-        console.log(minutes)
         changeDisplay(0,displayChars[minutes % 10])
         changeDisplay(1,displayChars[(minutes / 10) >> 0])
         changeDisplay(2,displayChars[hours % 10])
@@ -110,23 +130,8 @@ function updateClock(force) {
     }
 }
 
-/*
-let index2 = 0
-setInterval(function () {
-    if (index2 > 10) return
-    setupClock(clocks[index2 % 3])
-    index2++
-}, 1000);
-*/
-
-
-
-
-setupClock(clocks[0])
-
-
 setInterval(function () {updateClock(false)}, 1);
-
+updateClock(true)
 
 window.wallpaperPropertyListener = { 
     applyUserProperties: function(properties) { 
