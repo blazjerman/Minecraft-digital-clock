@@ -22,9 +22,13 @@ const displayChars = {
 
 
 let playVideo = true
+let clocks = clocksClear
+
+
+
+
 
 let clockDisplayed
-
 
 function setupClock(clock) {
 
@@ -52,7 +56,7 @@ function setupClock(clock) {
         for (const segmentName of segmentNames) {
 
             innerClock +=  '<img style="clip-path: inset(' + clipSeg(clock.displays[displayIndex][segmentName]) + 
-            ')" class="display_' + displayIndex + '_segment_' + segmentName + '" src="' + clockFullPath + clock.clockPath + '" alt="">';
+            ');' + clock.imgStyle + '" class="display_' + displayIndex + '_segment_' + segmentName + '" src="' + clockFullPath + clock.clockPath + '" alt="">';
     
         }
     
@@ -61,7 +65,7 @@ function setupClock(clock) {
     const clockObject = document.createElement("div")
 
     clockObject.innerHTML = innerClock + '<img style="clip-path: inset(' + clipSeg(clock.dot) + 
-    ')" class="dot' + '" src="' + clockFullPath + clock.clockPath + '" alt="">'
+    ');" class="dot" src="' + clockFullPath + clock.clockPath + '" alt="">'
 
     app.append(clockObject)
 
@@ -78,6 +82,7 @@ function setupClock(clock) {
     }, 2000)
 
     clockDisplayed = clock
+    updateClock(true)
 
 }
 
@@ -106,19 +111,6 @@ function updateClock(force) {
     const date = new Date()
     const minutes = date.getMinutes()
     const hours = date.getHours()
-
-    let closestHour = clocks[0].startingHour
-    let closestClock = clocks[0]
-
-    
-    for (const clock of clocks) {
-        if (clock.startingHour > hours) continue
-        if (clock.startingHour < closestHour) continue
-        closestClock = clock
-        closestHour = clock.startingHour
-    }
-    
-    setupClock(closestClock)
     
     if (lastMinutes != minutes || force) {
         changeDisplay(0,displayChars[minutes % 10])
@@ -130,8 +122,31 @@ function updateClock(force) {
     }
 }
 
+
+function updateWeather() {
+
+    const hours = new Date().getHours()
+
+    let closestHour = clocks[0].startingHour
+    let closestClock = clocks[0]
+
+    for (const clock of clocks) {
+        if (clock.startingHour > hours) continue
+        if (clock.startingHour <= closestHour) continue
+        closestClock = clock
+        closestHour = clock.startingHour
+    }
+
+    setupClock(closestClock)
+
+}
+
 setInterval(function () {updateClock(false)}, 1);
+setInterval(function () {updateWeather()}, 1000 * 60 * 3);
+
+updateWeather()
 updateClock(true)
+
 
 window.wallpaperPropertyListener = { 
     applyUserProperties: function(properties) { 
