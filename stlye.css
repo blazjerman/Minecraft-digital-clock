@@ -1,0 +1,34 @@
+body, div {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh;
+}
+
+video, img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+}
+
+
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+div { animation: fadeIn 2s; }
+
+
+
+@media (max-aspect-ratio: 16/9) {
+    video, img {
+        width: auto;
+        height: 100%;
+    }
+}
