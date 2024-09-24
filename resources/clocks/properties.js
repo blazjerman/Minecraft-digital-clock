@@ -1,18 +1,10 @@
 
 
-
-const clearWeather = ["Clear"]
-const cloudlyWeather = ["Clouds", "Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Dust", "Ash", "Squall", "Tornado"]
-const rainWeather = ["Rain", "Thunderstorm", "Drizzle"]
-const snowWeather = ["Snow"]
-
 // Day
 
 const day_clear = {
 
     name: "Day clear",
-    weather: clearWeather,
-
     clockPath: "day/clear.png",
     backgroundPath: "day/clear.webm",
     
@@ -67,8 +59,6 @@ const day_clear = {
 const day_cloudly = {
 
     name: "Day cloudly",
-    weather: cloudlyWeather,
-
     clockPath: "day/cloudly.png",
     backgroundPath: "day/cloudly.webm",
     
@@ -85,8 +75,6 @@ const day_cloudly = {
 const day_rain = {
 
     name: "Day rain",
-    weather: rainWeather,
-
     clockPath: "day/rain.png",
     backgroundPath: "day/rain.webm",
     
@@ -104,8 +92,6 @@ const day_rain = {
 const day_snow = {
 
     name: "Day snow",
-    weather: snowWeather,
-
     clockPath: "day/snow.png",
     backgroundPath: "day/snow.webm",
     
@@ -128,8 +114,6 @@ const day_snow = {
 const midnight_clear = {
 
     name: "Midnight clear",
-    weather: clearWeather,
-
     clockPath: "midnight/clear.png",
     backgroundPath: "midnight/clear.webm",
     
@@ -146,15 +130,13 @@ const midnight_clear = {
 const midnight_cloudly = {
 
     name: "Midnight cloudly",
-    weather: cloudlyWeather,
-
     clockPath: "midnight/cloudly.png",
     backgroundPath: "midnight/cloudly.webm",
     
     width: day_clear.width,
     height: day_clear.height,
 
-    startingHour: midnight_clear.startingHour,
+    startingHour: 20,
 
     displays: day_clear.displays,
     dot: day_clear.dot
@@ -164,15 +146,13 @@ const midnight_cloudly = {
 const midnight_rain = {
 
     name: "Midnight rain",
-    weather: rainWeather,
-
     clockPath: "midnight/rain.png",
     backgroundPath: "midnight/rain.webm",
     
     width: day_clear.width,
     height: day_clear.height,
 
-    startingHour: midnight_clear.startingHour,
+    startingHour: 20,
 
     displays: day_clear.displays,
     dot: day_clear.dot,
@@ -186,15 +166,13 @@ const midnight_rain = {
 const midnight_snow = {
 
     name: "Midnight snow",
-    weather: snowWeather,
-
     clockPath: "midnight/snow.png",
     backgroundPath: "midnight/snow.webm",
     
     width: day_clear.width,
     height: day_clear.height,
 
-    startingHour: midnight_clear.startingHour,
+    startingHour: 20,
 
     displays: day_clear.displays,
     dot: day_clear.dot,
@@ -210,8 +188,6 @@ const midnight_snow = {
 const night_clear = {
 
     name: "Night clear",
-    weather: clearWeather,
-
     clockPath: "night/clear.png",
     backgroundPath: "night/clear.webm",
     
@@ -230,8 +206,6 @@ const night_clear = {
 const noon_clear = {
 
     name: "Noon clear",
-    weather: clearWeather,
-
     clockPath: "noon/clear.png",
     backgroundPath: "noon/clear.webm",
     
@@ -247,20 +221,23 @@ const noon_clear = {
 
 
 
-const clocksClear = [
-    day_clear, midnight_clear, night_clear, noon_clear,
-]
+const cl = [
 
+    {
+        weather: ["Clear"],
+        types: [day_clear, midnight_clear, night_clear, noon_clear]
+    },
+    {
+        weather: ["Clouds", "Mist", "Smoke", "Haze", "Dust", "Fog", "Sand", "Dust", "Ash", "Squall", "Tornado"],
+        types: [day_cloudly, midnight_cloudly,]
+    },
+    {
+        weather: ["Rain", "Thunderstorm", "Drizzle"],
+        types: [day_rain, midnight_rain]
+    },
+    {
+        weather: ["Snow"],
+        types: [day_snow, midnight_snow]
+    }
 
-const clocksCloudly = [
-    day_cloudly, midnight_cloudly,
-]
-
-const clocksRain = [
-    day_rain, midnight_rain,
-]
-
-
-const clocksSnow = [
-    day_snow, midnight_snow
 ]

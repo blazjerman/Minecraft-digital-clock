@@ -22,19 +22,10 @@ const displayChars = {
 
 
 let playVideo = true
-let clocks = clocksClear
 
 
-
-
-
-let clockDisplayed
 
 function setupClock(clock) {
-
-    if (clockDisplayed == clock) return
-
-    console.log("Clock displayed: " + clock.name)
 
     function clipSeg(seg) {
         
@@ -102,50 +93,96 @@ function changeDisplay(displayIndex, segments) {
 }
 
 
-
+let weatherClocks = cl[0].types
+let clockDisplayed
 let lastMinutes
-let lastHours
 
 function updateClock(force) {
 
     const date = new Date()
     const minutes = date.getMinutes()
     const hours = date.getHours()
-    
+
     if (lastMinutes != minutes || force) {
+       
+        let closestHour = 0
+        let closestClock
+
+        for (const weatherClock of weatherClocks) {
+            if (weatherClock.startingHour > closestHour) {
+                closestClock = weatherClock
+                closestHour = weatherClock.startingHour
+            }
+        }
+
+        closestHour = 0
+
+        for (const weatherClock of weatherClocks) {
+            if (weatherClock.startingHour <= hours && weatherClock.startingHour > closestHour) {
+                closestClock = weatherClock
+                closestHour = weatherClock.startingHour
+            }
+        }
+
+        if (clockDisplayed != closestClock) {
+            setupClock(closestClock)
+            clockDisplayed = closestClock
+            console.log("Clock displayed: " + closestClock.name)
+        }
+        
+
         changeDisplay(0,displayChars[minutes % 10])
         changeDisplay(1,displayChars[(minutes / 10) >> 0])
         changeDisplay(2,displayChars[hours % 10])
         changeDisplay(3,displayChars[((hours / 10) >> 0)])
+
         lastMinutes = minutes
-        lastHours = hours
+
     }
 }
 
 
-function updateWeather() {
+function updateWether() {
 
-    const hours = new Date().getHours()
+    const city = ""
+    const api = ""
 
-    let closestHour = clocks[0].startingHour
-    let closestClock = clocks[0]
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + api)
+    .then(response => response.json())
+    .then(resp => {
+       
+        const weatherNow = resp.weather[0].main
 
-    for (const clock of clocks) {
-        if (clock.startingHour > hours) continue
-        if (clock.startingHour <= closestHour) continue
-        closestClock = clock
-        closestHour = clock.startingHour
-    }
+        for (const clocks of cl) {
+            for (const weather of clocks.weather) {
+                if (weather === weatherNow) {
+                    weatherClocks = clocks.types
+                    updateClock(true)
+                    console.log("Curent weather: " + weatherNow)
+                    break
+                }
+            }
+        }
 
-    setupClock(closestClock)
+    })
+    .catch(error => {
+        console.error('Error:', error)
+    })
 
 }
 
-setInterval(function () {updateClock(false)}, 1);
-setInterval(function () {updateWeather()}, 1000 * 60 * 3);
 
-updateWeather()
-updateClock(true)
+
+
+setInterval(function () {updateClock(false)}, 1)
+
+function enableWether() {
+    setInterval(function () {updateWether()}, 1000 * 60 * 3)
+    updateWether()
+}
+
+enableWether()
+
 
 
 window.wallpaperPropertyListener = { 
