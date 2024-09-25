@@ -1,5 +1,7 @@
 
-const audio = document.getElementById("audio")
+const backgroundAudio = document.getElementById("backgroundAudio")
+const clockChangeAudio = document.getElementById("clockChangeAudio")
+
 const app = document.getElementById("app")
 
 const clockFullPath = "resources/clocks/"
@@ -136,6 +138,8 @@ function updateClock(force) {
         changeDisplay(2,displayChars[hours % 10])
         changeDisplay(3,displayChars[((hours / 10) >> 0)])
 
+        clockChangeAudio.play()
+
         lastMinutes = minutes
 
     }
@@ -189,7 +193,7 @@ window.wallpaperPropertyListener = {
     applyUserProperties: function(properties) { 
         if (properties.customSound) { 
             if (properties.customSound.value !== "") { 
-                audio.volume = properties.customSound.value;
+                backgroundAudio.volume = properties.customSound.value;
             } 
         } 
     } 
