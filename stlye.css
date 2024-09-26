@@ -2,11 +2,19 @@ body, div {
     margin: 0;
     overflow: hidden;
     background-color: black;
+    color: white;
     pointer-events: none;
     display: flex;
     justify-content: center;
     align-items: center; 
     height: 100vh;
+    
+}
+
+p {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 video, img {
@@ -22,7 +30,7 @@ video, img {
     100% { opacity: 1; }
 }
 
-div { animation: fadeIn 2s; }
+div { animation: fadeIn 4s; }
 
 
 

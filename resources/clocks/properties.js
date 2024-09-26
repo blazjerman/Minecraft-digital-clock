@@ -221,7 +221,7 @@ const noon_clear = {
 
 
 
-const cl = [
+const clocks = [
 
     {
         weather: ["Clear"],

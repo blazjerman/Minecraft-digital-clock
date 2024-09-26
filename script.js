@@ -1,8 +1,15 @@
 
+const weatherUpdateInterval = 1000 * 60 * 3     // In miliseconds
+const timeUpdateInterval = 1                    // In miliseconds
+const clockChangeDelayAfterSound = 200          // In miliseconds
+const typeTransition = 5000                     // In miliseconds
+
+
 const backgroundAudio = document.getElementById("backgroundAudio")
 const clockChangeAudio = document.getElementById("clockChangeAudio")
 
 const app = document.getElementById("app")
+const weatherData = document.getElementById("weatherData")
 
 const clockFullPath = "resources/clocks/"
 
@@ -21,10 +28,11 @@ const displayChars = {
     9: ["A","B","C","D","F","G"],
 }
 
+const defaultClock = clocks[0].types
 
 
-let playVideo = true
-
+let enableAnimation = true
+let selectedClock = "Cycle"
 
 
 function setupClock(clock) {
@@ -41,7 +49,7 @@ function setupClock(clock) {
     }
 
     
-    let innerClock = '<video ' + (playVideo ? 'autoplay ' : '') + ' muted loop><source src="' + 
+    let innerClock = '<video ' + (enableAnimation ? 'autoplay ' : '') + ' muted loop><source src="' + 
     clockFullPath + clock.backgroundPath + '">Error loading video.</video>'
 
     for (const displayIndex in clock.displays) {
@@ -72,10 +80,9 @@ function setupClock(clock) {
             if (child !== clockObject) app.removeChild(child)
         }
 
-    }, 2000)
+    }, typeTransition)
 
     clockDisplayed = clock
-    updateClock(true)
 
 }
 
@@ -95,7 +102,7 @@ function changeDisplay(displayIndex, segments) {
 }
 
 
-let weatherClocks = cl[0].types
+let clockTypes = defaultClock
 let clockDisplayed
 let lastMinutes
 
@@ -105,72 +112,110 @@ function updateClock(force) {
     const minutes = date.getMinutes()
     const hours = date.getHours()
 
-    if (lastMinutes != minutes || force) {
-       
-        let closestHour = 0
-        let closestClock
+    if (force) changeClock()
 
-        for (const weatherClock of weatherClocks) {
-            if (weatherClock.startingHour > closestHour) {
-                closestClock = weatherClock
-                closestHour = weatherClock.startingHour
+    if (lastMinutes != minutes) {
+        lastMinutes = minutes
+        setTimeout(() => {changeClock()}, clockChangeDelayAfterSound)
+        console.log("jao: " + lastMinutes)
+        clockChangeAudio.play()
+    }
+
+    function changeClock() {
+
+
+        if (selectedClock == "Cycle") {
+            
+            let closestHour = 0
+            let closestClock
+    
+            for (const type of clockTypes) {
+                if (type.startingHour > closestHour) {
+                    closestClock = type
+                    closestHour = type.startingHour
+                }
             }
-        }
-
-        closestHour = 0
-
-        for (const weatherClock of weatherClocks) {
-            if (weatherClock.startingHour <= hours && weatherClock.startingHour > closestHour) {
-                closestClock = weatherClock
-                closestHour = weatherClock.startingHour
+    
+            closestHour = 0
+    
+            for (const type of clockTypes) {
+                if (type.startingHour <= hours && type.startingHour > closestHour) {
+                    closestClock = type
+                    closestHour = type.startingHour
+                }
             }
-        }
-
-        if (clockDisplayed != closestClock) {
-            setupClock(closestClock)
-            clockDisplayed = closestClock
-            console.log("Clock displayed: " + closestClock.name)
-        }
+    
+            if (clockDisplayed != closestClock || force) {
+                setupClock(closestClock)
+                clockDisplayed = closestClock
+                console.log("Clock displayed: " + closestClock.name)
+            }
         
+        } else {
+
+            for (const clock of clocks) {
+                for (const type of clock.types) {
+                    if (type.name == selectedClock) setupClock(type)
+                }
+            }
+
+        }
 
         changeDisplay(0,displayChars[minutes % 10])
         changeDisplay(1,displayChars[(minutes / 10) >> 0])
         changeDisplay(2,displayChars[hours % 10])
-        changeDisplay(3,displayChars[((hours / 10) >> 0)])
-
-        clockChangeAudio.play()
-
-        lastMinutes = minutes
+        changeDisplay(3,displayChars[((hours / 10) >> 0)])   
 
     }
+
 }
 
 
+let enableWeather = false
+let city = ""
+let api = ""
+let enablrWeatherLog = false
+let requests = 0
+
 function updateWether() {
 
-    const city = ""
-    const api = ""
+    weatherData.innerHTML = ""
+
+    if (!enableWeather || city == "" || api == "" || selectedClock != "Cycle") {
+        clockTypes = defaultClock
+        updateClock(true)
+        return
+    }
+    
 
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + api)
     .then(response => response.json())
     .then(resp => {
        
+        if (enablrWeatherLog) weatherData.innerHTML = JSON.stringify(resp) + " Session requests count: " + requests
+
         const weatherNow = resp.weather[0].main
 
-        for (const clocks of cl) {
-            for (const weather of clocks.weather) {
+        for (const clock of clocks) {
+            for (const weather of clock.weather) {
                 if (weather === weatherNow) {
-                    weatherClocks = clocks.types
-                    updateClock(true)
-                    console.log("Curent weather: " + weatherNow)
+                    if (clockTypes != clock.types) {
+                        clockTypes = clock.types
+                        updateClock(true)
+                        console.log("Curent weather: " + weatherNow)
+                    }
                     break
                 }
             }
         }
 
+        requests++
+
     })
     .catch(error => {
         console.error('Error:', error)
+        weatherData.innerHTML += " " + error
+        updateClock(true)
     })
 
 }
@@ -178,24 +223,52 @@ function updateWether() {
 
 
 
-setInterval(function () {updateClock(false)}, 1)
-
-function enableWether() {
-    setInterval(function () {updateWether()}, 1000 * 60 * 3)
-    updateWether()
-}
-
-enableWether()
+setInterval(function () {updateClock(false)}, timeUpdateInterval)
+setInterval(function () {updateWether()}, weatherUpdateInterval)
 
 
 
 window.wallpaperPropertyListener = { 
     applyUserProperties: function(properties) { 
-        if (properties.customSound) { 
-            if (properties.customSound.value !== "") { 
-                backgroundAudio.volume = properties.customSound.value;
-            } 
+        
+        if (properties.audioVolume) {
+            backgroundAudio.volume = properties.audioVolume.value / 100
         } 
+
+        if (properties.pistonVolume) {
+            clockChangeAudio.volume = properties.pistonVolume.value / 100
+        } 
+
+        if (properties.selectedClock) {
+            selectedClock = properties.selectedClock.value
+            updateWether()
+        }
+
+        if (properties.enableAnimation) {
+            enableAnimation = properties.enableAnimation.value
+            updateWether()
+        }
+
+        if (properties.enableWeather) {
+            enableWeather = properties.enableWeather.value
+            updateWether()
+        }
+
+        if (properties.api) {
+            api = properties.api.value
+            updateWether()
+        }
+
+        if (properties.city) {
+            city = properties.city.value
+            updateWether()
+        }
+
+        if (properties.enablrWeatherLog) {
+            enablrWeatherLog = properties.enablrWeatherLog.value
+            updateWether()
+        }
+
     } 
 } 
 
