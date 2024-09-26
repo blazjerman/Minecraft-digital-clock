@@ -66,7 +66,7 @@ function setupClock(clock) {
     const clockObject = document.createElement("div")
 
     clockObject.innerHTML = innerClock + '<img style="clip-path: inset(' + clipSeg(clock.dot) + 
-    ');" class="dot" src="' + clockFullPath + clock.clockPath + '" alt="">'
+    ');' + clock.imgStyle + '" class="dot" src="' + clockFullPath + clock.clockPath + '" alt="">'
 
     app.append(clockObject)
 
