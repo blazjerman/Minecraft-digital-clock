@@ -246,7 +246,7 @@ window.wallpaperPropertyListener = {
 
         if (properties.enableAnimation) {
             enableAnimation = properties.enableAnimation.value
-            updateWether()
+            updateClock(true)
         }
 
         if (properties.enableWeather) {
