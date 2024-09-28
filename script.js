@@ -192,24 +192,24 @@ function updateWeather() {
     .then(response => response.json())
     .then(resp => {
        
+        requests++
+
         if (enableWeatherLog) weatherData.innerHTML = JSON.stringify(resp) + " Session requests count: " + requests
 
         const weatherNow = resp.weather[0].main
 
         for (const clock of clocks) {
             for (const weather of clock.weather) {
-                if (weather === weatherNow) {
-                    if (clockTypes != clock.types) {
-                        clockTypes = clock.types
-                        updateClock(true)
-                        console.log("Current weather: " + weatherNow)
-                    }
+                if (weather == weatherNow) {
+                    clockTypes = clock.types
+                    updateClock(true)
+                    console.log("Current weather: " + weatherNow)
                     break
                 }
             }
         }
 
-        requests++
+        
 
     })
     .catch(error => {
