@@ -19,8 +19,8 @@
 						"value": "Day clear"
 					},
 					{
-						"label": "Day cloudly",
-						"value": "Day cloudly"
+						"label": "Day cloudy",
+						"value": "Day cloudy"
 					},
 					{
 						"label": "Day rain",
@@ -35,8 +35,8 @@
 						"value": "Midnight clear"
 					},
 					{
-						"label": "Midnight cloudly",
-						"value": "Midnight cloudly"
+						"label": "Midnight cloudy",
+						"value": "Midnight cloudy"
 					},
 					{
 						"label": "Midnight rain",

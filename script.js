@@ -1,8 +1,8 @@
 
-const weatherUpdateInterval = 1000 * 60 * 3     // In miliseconds
-const timeUpdateInterval = 1                    // In miliseconds
-const clockChangeDelayAfterSound = 200          // In miliseconds
-const typeTransition = 5000                     // In miliseconds
+const weatherUpdateInterval = 1000 * 60 * 3     // In milliseconds
+const timeUpdateInterval = 1                    // In milliseconds
+const clockChangeDelayAfterSound = 200          // In milliseconds
+const typeTransition = 5000                     // In milliseconds
 
 
 const backgroundAudio = document.getElementById("backgroundAudio")
@@ -174,10 +174,10 @@ function updateClock(force) {
 let enableWeather = false
 let city = ""
 let api = ""
-let enablrWeatherLog = false
+let enableWeatherLog = false
 let requests = 0
 
-function updateWether() {
+function updateWeather() {
 
     weatherData.innerHTML = ""
 
@@ -192,7 +192,7 @@ function updateWether() {
     .then(response => response.json())
     .then(resp => {
        
-        if (enablrWeatherLog) weatherData.innerHTML = JSON.stringify(resp) + " Session requests count: " + requests
+        if (enableWeatherLog) weatherData.innerHTML = JSON.stringify(resp) + " Session requests count: " + requests
 
         const weatherNow = resp.weather[0].main
 
@@ -202,7 +202,7 @@ function updateWether() {
                     if (clockTypes != clock.types) {
                         clockTypes = clock.types
                         updateClock(true)
-                        console.log("Curent weather: " + weatherNow)
+                        console.log("Current weather: " + weatherNow)
                     }
                     break
                 }
@@ -224,7 +224,7 @@ function updateWether() {
 
 
 setInterval(function () {updateClock(false)}, timeUpdateInterval)
-setInterval(function () {updateWether()}, weatherUpdateInterval)
+setInterval(function () {updateWeather()}, weatherUpdateInterval)
 
 
 
@@ -241,7 +241,7 @@ window.wallpaperPropertyListener = {
 
         if (properties.selectedClock) {
             selectedClock = properties.selectedClock.value
-            updateWether()
+            updateWeather()
         }
 
         if (properties.enableAnimation) {
@@ -251,22 +251,22 @@ window.wallpaperPropertyListener = {
 
         if (properties.enableWeather) {
             enableWeather = properties.enableWeather.value
-            updateWether()
+            updateWeather()
         }
 
         if (properties.api) {
             api = properties.api.value
-            updateWether()
+            updateWeather()
         }
 
         if (properties.city) {
             city = properties.city.value
-            updateWether()
+            updateWeather()
         }
 
-        if (properties.enablrWeatherLog) {
-            enablrWeatherLog = properties.enablrWeatherLog.value
-            updateWether()
+        if (properties.enableWeatherLog) {
+            enableWeatherLog = properties.enableWeatherLog.value
+            updateWeather()
         }
 
     } 
