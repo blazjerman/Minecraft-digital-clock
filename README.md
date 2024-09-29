@@ -56,7 +56,7 @@ In Wallpaper Engine's wallpaper settings, you can set different background anima
    ```bash
    git clone https://github.com/blazjerman/WE-MC-DigitalClock.git
 2. Alternatively, you can get the wallpaper directly from Steam Workshop at the following link:
-https://steamcommunity.com/sharedfiles/filedetails/?id=1731760875
+https://steamcommunity.com/sharedfiles/filedetails/?id=3339891336
 
 
 
