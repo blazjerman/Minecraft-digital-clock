@@ -2,7 +2,7 @@
 
 ![Preview](./preview.gif)
 
-**WE-MC-DigitalClock** is an updated version of the **Minecraft Redstone Clock** wallpaper for Wallpaper Engine. This version includes improved video quality, piston sound effects, optional background sound, and dynamic weather-based background changes powered by the OpenWeatherMap API. It maintains the Minecraft-inspired digital clock within an animated environment.
+**WE-MC-DigitalClock** is an updated version of the **Minecraft Redstone Clock** wallpaper for Wallpaper Engine. This version includes improved video quality, piston sound effects, optional background sound, and dynamic weather-based background changes powered by the OpenWeatherMap API. It maintains the Minecraft-inspired digital clock within an animated environment. The wallpaper is set in a Minecraft taiga biome and uses Chocapic13 V9 Extreme shaders.
 
 ## What's New in This Version?
 
@@ -48,7 +48,9 @@ To add your own custom background audio, you need an audio file in `.ogg` format
 
 ### Customization
 
-In Wallpaper Engine's wallpaper settings, you can set different background animations based on the weather and time. If you set it to cycle, it will automatically change according to the time of day.
+In the Wallpaper Engine settings, you can configure different background animations based on the weather and time of day. If you set it to cycle, it will automatically change according to the time of day. The repository also includes a `save.zip` file that contains two Minecraft worlds for snowy and normal weather, allowing you to modify the world and record footage for your wallpaper. All recordings can be found in the `resources/clock` folder.
+
+Recordings should be made with the segments turned off, and you should also take a picture with the segments turned on. If you change the clock position, you will need to modify the display segment positions located in `properties.js`. The segments are labeled from A to G, following a standard naming convention. The first two values represent the top-right pixel position of a segment, while the second two values represent the bottom-left corner. You can obtain these positions by hovering the mouse over the pixel in most editors, such as GIMP. The piston sound can also be changed by replacing the `piston.ogg` file in the `/resources/sound` directory.
 
 ### Installation
 
