@@ -1,8 +1,8 @@
-# WE-MC-DigitalClock
+# Minecraft digital clock
 
 ![Preview](./preview.gif)
 
-**WE-MC-DigitalClock** is an updated version of the [**Minecraft Redstone Clock**](https://steamcommunity.com/sharedfiles/filedetails/?id=1731760875) wallpaper for Wallpaper Engine. This version includes improved video quality, piston sound effects, optional background sound, and dynamic weather-based background changes powered by the OpenWeatherMap API. It maintains the Minecraft-inspired digital clock within an animated environment. The wallpaper is set in a Minecraft taiga biome and uses Chocapic13 V9 Extreme shaders.
+**Minecraft digital clock** is an updated version of the [**Minecraft Redstone Clock**](https://steamcommunity.com/sharedfiles/filedetails/?id=1731760875) wallpaper for Wallpaper Engine. This version includes improved video quality, piston sound effects, optional background sound, and dynamic weather-based background changes powered by the OpenWeatherMap API. It maintains the Minecraft-inspired digital clock within an animated environment. The wallpaper is set in a Minecraft taiga biome and uses Chocapic13 V9 Extreme shaders.
 
 ## What's New in This Version?
 
@@ -57,4 +57,4 @@ Recordings should be made with the segments turned off, and you should also take
 You can download the wallpaper directly from the [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3339891336).
 Or clone the repository:
    ```bash
-   git clone https://github.com/blazjerman/WE-MC-DigitalClock.git
+   git clone https://github.com/blazjerman/Minecraft-digital-clock.git
