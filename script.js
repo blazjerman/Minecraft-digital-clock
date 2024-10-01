@@ -117,7 +117,7 @@ function updateClock(force) {
     if (lastMinutes != minutes) {
         lastMinutes = minutes
         setTimeout(() => {changeClock()}, clockChangeDelayAfterSound)
-        console.log("jao: " + lastMinutes)
+        console.log("Display updated, minute: " + lastMinutes)
         clockChangeAudio.play()
     }
 
