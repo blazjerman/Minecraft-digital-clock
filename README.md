@@ -4,6 +4,8 @@
 
 **Minecraft digital clock** is an updated version of the [**Minecraft Redstone Clock**](https://steamcommunity.com/sharedfiles/filedetails/?id=1731760875) wallpaper for Wallpaper Engine. This version includes improved video quality, piston sound effects, optional background sound, and dynamic weather-based background changes powered by the OpenWeatherMap API. It maintains the Minecraft-inspired digital clock within an animated environment. The wallpaper is set in a Minecraft taiga biome and uses Chocapic13 V9 Extreme shaders.
 
+### **[Try the wallpaper with a changing day cycle here!](https://blazjerman.github.io/Minecraft-digital-clock/)**
+
 ## What's New in This Version?
 
 - **Weather-Responsive Backgrounds**: With the OpenWeatherMap API, the wallpaper updates the background based on real-time weather conditions in your town, such as sunny, rainy, cloudy, or snowy weather.
