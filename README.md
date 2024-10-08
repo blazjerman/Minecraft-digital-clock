@@ -64,5 +64,4 @@ Or clone the repository:
 
 ## Donate
 
-- [PayPal](https://paypal.me/BlazJermam?country.x=SI&locale.x=sl_SI)
 - [Ko-fi](https://ko-fi.com/blazjerman)
