@@ -60,3 +60,8 @@ You can download the wallpaper directly from the [Steam Workshop](https://steamc
 Or clone the repository:
    ```bash
    git clone https://github.com/blazjerman/Minecraft-digital-clock.git
+
+## Donate
+
+- [PayPal](https://paypal.me/BlazJermam?country.x=SI&locale.x=sl_SI)
+- [Ko-fi](https://ko-fi.com/blazjerman)
