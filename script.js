@@ -32,6 +32,8 @@ const defaultClock = clocks[0].types
 
 
 let enableAnimation = true
+let ampm = false
+
 let selectedClock = "Cycle"
 
 
@@ -161,10 +163,14 @@ function updateClock(force) {
 
         }
 
+
+        let hoursCorected = hours
+        if (ampm) hoursCorected = hours % 12 || 12
+
         changeDisplay(0,displayChars[minutes % 10])
         changeDisplay(1,displayChars[(minutes / 10) >> 0])
-        changeDisplay(2,displayChars[hours % 10])
-        changeDisplay(3,displayChars[((hours / 10) >> 0)])   
+        changeDisplay(2,displayChars[hoursCorected % 10])
+        changeDisplay(3,displayChars[((hoursCorected / 10) >> 0)])   
 
     }
 
@@ -268,6 +274,13 @@ window.wallpaperPropertyListener = {
             enableWeatherLog = properties.enableWeatherLog.value
             updateWeather()
         }
+
+        if (properties.ampm) {
+            ampm = properties.ampm.value
+            updateClock(true)
+        }
+
+
 
     } 
 } 

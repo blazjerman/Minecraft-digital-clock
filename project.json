@@ -80,13 +80,21 @@
 				"type": "combo",
 				"value": true
 			},
+			
+			"ampm" : 
+			{
+				"order" : 3,
+				"text" : "12 Hour",
+				"type" : "bool",
+				"value" : false
+			},
 
 			"pistonVolume": 
 			{
 				"index": 0,
 				"max": 100,
 				"min": 0,
-				"order": 3,
+				"order": 4,
 				"step": 1,
 				"text": "Piston volume",
 				"type": "slider",
@@ -98,7 +106,7 @@
 				"index": 0,
 				"max": 100,
 				"min": 0,
-				"order": 4,
+				"order": 5,
 				"step": 1,
 				"text": "Background audio volume",
 				"type": "slider",
@@ -118,7 +126,7 @@
 						"value": false
 					}
 				],
-				"order": 5,
+				"order": 6,
 				"text": "Enable weather",
 				"type": "combo",
 				"value": false
@@ -126,7 +134,7 @@
 
 			"api": 
 			{
-				"order": 6,
+				"order": 7,
 				"text": "Wether API key",
 				"type": "textinput",
 				"value": ""
@@ -134,7 +142,7 @@
 			
 			"city": 
 			{
-				"order": 7,
+				"order": 8,
 				"text": "City",
 				"type": "textinput",
 				"value": ""
@@ -153,7 +161,7 @@
 						"value": false
 					}
 				],
-				"order": 8,
+				"order": 9,
 				"text": "Weather log",
 				"type": "combo",
 				"value": false
