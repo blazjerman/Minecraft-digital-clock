@@ -1,179 +1,186 @@
 {
 	"contentrating" : "Everyone",
-	"description" : "A Minecraft-themed digital clock with dynamic weather effects like rain, snow, and clear skies.",
+	"description" : "Minecraft digital clock is a Minecraft-themed digital clock wallpaper for Wallpaper Engine. It features dynamic, weather-responsive backgrounds (using the OpenWeatherMap API), piston sound effects, and customizable ambient sounds. The wallpaper transitions between day and night scenes in a Minecraft world, offering an immersive experience with improved video quality.\r\n\r\nRead more on GitHub:\r\n[url=https://github.com/blazjerman/WE-MC-DigitalClock] GitHub [/url]\r\n\r\nIf you'd like to buy me a coffee, you can do so here:\r\n[url=https://ko-fi.com/blazjerman] Ko-fi [/url]",
 	"file" : "index.html",
 	"general" : 
 	{
-		"properties": 
+		"properties" : 
 		{
-			"selectedClock": 
-			{
-				"options": 
-				[
-					{
-						"label": "Cycle",
-						"value": "Cycle"
-					},
-					{
-						"label": "Day clear",
-						"value": "Day clear"
-					},
-					{
-						"label": "Day cloudy",
-						"value": "Day cloudy"
-					},
-					{
-						"label": "Day rain",
-						"value": "Day rain"
-					},
-					{
-						"label": "Day snow",
-						"value": "Day snow"
-					},
-					{
-						"label": "Midnight clear",
-						"value": "Midnight clear"
-					},
-					{
-						"label": "Midnight cloudy",
-						"value": "Midnight cloudy"
-					},
-					{
-						"label": "Midnight rain",
-						"value": "Midnight rain"
-					},
-					{
-						"label": "Midnight snow",
-						"value": "Midnight snow"
-					},
-					{
-						"label": "Night clear",
-						"value": "Night clear"
-					},
-					{
-						"label": "Noon clear",
-						"value": "Noon clear"
-					}
-
-				],
-				"order": 1,
-				"text": "Selected clock",
-				"type": "combo",
-				"value": "Cycle"
-			},
-
-			"enableAnimation": 
-			{
-				"options": 
-				[
-					{
-						"label": "ON",
-						"value": true
-					},
-					{
-						"label": "OFF",
-						"value": false
-					}
-				],
-				"order": 2,
-				"text": "Animated",
-				"type": "combo",
-				"value": true
-			},
-			
 			"ampm" : 
 			{
-				"order" : 3,
+				"index" : 2,
+				"order" : 102,
 				"text" : "12 Hour",
 				"type" : "bool",
 				"value" : false
 			},
-
-			"pistonVolume": 
+			"api" : 
 			{
-				"index": 0,
-				"max": 100,
-				"min": 0,
-				"order": 4,
-				"step": 1,
-				"text": "Piston volume",
-				"type": "slider",
-				"value": 100
+				"index" : 6,
+				"order" : 106,
+				"text" : "Wether API key",
+				"type" : "textinput",
+				"value" : ""
 			},
-
-			"audioVolume": 
+			"audioVolume" : 
 			{
-				"index": 0,
-				"max": 100,
-				"min": 0,
-				"order": 5,
-				"step": 1,
-				"text": "Background audio volume",
-				"type": "slider",
-				"value": 0
+				"index" : 4,
+				"max" : 100,
+				"min" : 0,
+				"order" : 104,
+				"step" : 1,
+				"text" : "Background audio volume",
+				"type" : "slider",
+				"value" : 0
 			},
-
-			"enableWeather": 
+			"city" : 
 			{
-				"options": 
+				"index" : 7,
+				"order" : 107,
+				"text" : "City",
+				"type" : "textinput",
+				"value" : ""
+			},
+			"enableAnimation" : 
+			{
+				"index" : 1,
+				"options" : 
 				[
 					{
-						"label": "ON",
-						"value": true
+						"label" : "ON",
+						"value" : true
 					},
 					{
-						"label": "OFF",
-						"value": false
+						"label" : "OFF",
+						"value" : false
 					}
 				],
-				"order": 6,
-				"text": "Enable weather",
-				"type": "combo",
-				"value": false
+				"order" : 101,
+				"text" : "Animated",
+				"type" : "combo",
+				"value" : true
 			},
-
-			"api": 
+			"enableWeather" : 
 			{
-				"order": 7,
-				"text": "Wether API key",
-				"type": "textinput",
-				"value": ""
-			},
-			
-			"city": 
-			{
-				"order": 8,
-				"text": "City",
-				"type": "textinput",
-				"value": ""
-			},
-
-			"enableWeatherLog": 
-			{
-				"options": 
+				"index" : 5,
+				"options" : 
 				[
 					{
-						"label": "ON",
-						"value": true
+						"label" : "ON",
+						"value" : true
 					},
 					{
-						"label": "OFF",
-						"value": false
+						"label" : "OFF",
+						"value" : false
 					}
 				],
-				"order": 9,
-				"text": "Weather log",
-				"type": "combo",
-				"value": false
+				"order" : 105,
+				"text" : "Enable weather",
+				"type" : "combo",
+				"value" : false
+			},
+			"enableWeatherLog" : 
+			{
+				"index" : 8,
+				"options" : 
+				[
+					{
+						"label" : "ON",
+						"value" : true
+					},
+					{
+						"label" : "OFF",
+						"value" : false
+					}
+				],
+				"order" : 108,
+				"text" : "Weather log",
+				"type" : "combo",
+				"value" : false
+			},
+			"pistonVolume" : 
+			{
+				"index" : 3,
+				"max" : 100,
+				"min" : 0,
+				"order" : 103,
+				"step" : 1,
+				"text" : "Piston volume",
+				"type" : "slider",
+				"value" : 100
+			},
+			"schemecolor" : 
+			{
+				"order" : 0,
+				"text" : "ui_browse_properties_scheme_color",
+				"type" : "color",
+				"value" : "0 0 0"
+			},
+			"selectedClock" : 
+			{
+				"index" : 0,
+				"options" : 
+				[
+					{
+						"label" : "Cycle",
+						"value" : "Cycle"
+					},
+					{
+						"label" : "Day clear",
+						"value" : "Day clear"
+					},
+					{
+						"label" : "Day cloudy",
+						"value" : "Day cloudy"
+					},
+					{
+						"label" : "Day rain",
+						"value" : "Day rain"
+					},
+					{
+						"label" : "Day snow",
+						"value" : "Day snow"
+					},
+					{
+						"label" : "Midnight clear",
+						"value" : "Midnight clear"
+					},
+					{
+						"label" : "Midnight cloudy",
+						"value" : "Midnight cloudy"
+					},
+					{
+						"label" : "Midnight rain",
+						"value" : "Midnight rain"
+					},
+					{
+						"label" : "Midnight snow",
+						"value" : "Midnight snow"
+					},
+					{
+						"label" : "Night clear",
+						"value" : "Night clear"
+					},
+					{
+						"label" : "Noon clear",
+						"value" : "Noon clear"
+					}
+				],
+				"order" : 100,
+				"text" : "Selected clock",
+				"type" : "combo",
+				"value" : "Cycle"
 			}
-
 		}
-
 	},
 	"preview" : "preview.gif",
+	"ratingsex" : "none",
+	"ratingviolence" : "none",
 	"tags" : [ "Game" ],
 	"title" : "Minecraft digital clock",
 	"type" : "web",
-	"visibility" : "public"
-	
+	"version" : 3,
+	"visibility" : "public",
+	"workshopid" : "3339891336",
+	"workshopurl" : "steam://url/CommunityFilePage/3339891336"
 }
