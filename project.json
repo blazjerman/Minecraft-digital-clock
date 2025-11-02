@@ -18,7 +18,7 @@
 			{
 				"index" : 6,
 				"order" : 106,
-				"text" : "Wether API key",
+				"text" : "Weather API key",
 				"type" : "textinput",
 				"value" : ""
 			},
